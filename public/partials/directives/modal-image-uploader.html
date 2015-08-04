@@ -1,0 +1,37 @@
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title text-center">Modify Avatar</h3>
+    <h4 class="modal-title text-center dotted-text">{{entity.title}}</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="text-center" ng-show="!modifyImageAt">
+                <img  class="img img-responsive" ng-show="{{entity.img_path !== undefined}}" ng-src="{{entity.img_path.indexOf('logos', 0) == 0? entity.img_path: '/assets/images/'+entity.img_path+'.jpg'}}">
+                <img  class="img img-responsive" ng-show="{{undefined === entity.img_path}}" ng-src="/assets/images/No_image.svg">
+                <br><br><button class="btn btn-primary" ng-click="modifyImageAt = true" ><i class="fa fa-pencil"/> Modify</button>
+            </div>
+            <div ng-show="modifyImageAt">
+                <div ng-show="progressIcon" class="text-center">
+                    <i class="fa fa-spinner fa-pulse" style="font-size:3em;"></i>
+                </div>
+                <div ng-show="!progressIcon && !fileUploadedSuccess && !fileUploadedError" ngf-drop ngf-select ng-model="imageToUp" class="drop-box"
+                     ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false"
+                     accept="image/*">Slide your pics or click to select</div>
+                <div ngf-no-file-drop>Drop non support&eacute;</div>
+                <div ng-show="fileUploadedSuccess" class="alert alert-success" role="alert">
+                    The avi has been successfully updated
+                </div>
+                <div ng-show="fileUploadedError" class="alert alert-danger" role="alert">
+                    Some error occured while updating the avi
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+

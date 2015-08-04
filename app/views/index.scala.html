@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="reactive-auth" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+<head>
+    <title>ConseilCitoyen</title>
+    <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("lib/font-awesome/css/font-awesome.min.css")'>
+    <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/animate.min.css")'>
+    <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("lib/bootstrap-css-only/css/bootstrap-theme.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("lib/ng-table/dist/ng-table.min.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("lib/angular-ui-select/dist/select.min.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+    <script src='@routes.Assets.at("lib/jquery/jquery.min.js")' type="text/javascript"></script>
+</head>
+<body style="background-color:white">
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span>
+               <a class="navbar-brand logo" href="/#/">Reactive Auth </a>
+                <i class="fa fa-bars fa-2x" id="menu-toggle"></i>
+            </span>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+            <button type="button" class="btn btn-success navbar-btn" ng-click="$root.logUser()" ng-show="!$root.logged">
+                <i class="fa fa-sign-in fa-fw"></i> Login
+            </button>
+            <ul class="nav navbar-nav navbar-right" >
+                <li class="dropdown hidden-xs" ng-show="$root.logged">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">{{$root.loggedUser.firstName}} {{$root.loggedUser.lastName}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/#/myaccount"><i class="fa fa-pencil fa-fw"></i> My Account</a></li>
+                        <li class="divider"></li>
+                        <li ng-show="{{$root.loggedUser.role === 'Administrator'? true: false}}"><a href="#/app"><i class="fa fa-briefcase fa-fw"></i> Dashboard</a></li>
+                        <li class="divider"></li>
+                        <li><a href="" ng-click="$root.logOut()"><i class="fa fa-times fa-fw"></i> Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+                    <ul class="nav navbar-nav navbar-right visible-xs collapseNav" ng-show="$root.logged">
+                        <li><a href="/#/myaccount"><i class="fa fa-pencil fa-fw"></i> My Account</a></li>
+                        <li class="divider"></li>
+                        <li ng-show="{{$root.loggedUser.role === 'Administrator'? true: false}}"><a href="#/app"><i class="fa fa-briefcase fa-fw"></i> Dashboard</a></li>
+                        <li class="divider"></li>
+                        <li><a href="" ng-click="$root.logOut()"><i class="fa fa-times fa-fw"></i> Log Out</a></li>
+                    </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div>
+        <div ui-view></div>
+        <div ng-include src="'/assets/partials/login-modal.html'"></div>
+    </div>
+</div>
+
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $(e.target).toggleClass("menu-open");
+
+    });
+    </script>
+
+
+<script src='@routes.Assets.at("lib/angularjs/angular.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angular-ui-router/release/angular-ui-router.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angularjs/angular-sanitize.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angularjs/angular-animate.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angularjs/angular-resource.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angularjs/angular-route.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angular-ui-bootstrap/ui-bootstrap-tpls.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/ng-table/dist/ng-table.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angular-local-storage/angular-local-storage.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("javascripts/app.js")'></script>
+<script src='@routes.Assets.at("javascripts/controllers/users.js")'></script>
+<script src='@routes.Assets.at("javascripts/controllers/main.js")'></script>
+<script src='@routes.Assets.at("javascripts/controllers/login.js")'></script>
+<script src='@routes.Assets.at("javascripts/directives/modalUsers.js")'></script>
+<script src='@routes.Assets.at("javascripts/directives/focusme.js")'></script>
+<script src='@routes.Assets.at("javascripts/directives/modalImageUploader.js")'></script>
+<script src='@routes.Assets.at("javascripts/services/account.js")'></script>
+<script src='@routes.Assets.at("javascripts/services/session.js")'></script>
+<script src='@routes.Assets.at("javascripts/filters/time.js")'></script>
+<script src='@routes.Assets.at("javascripts/filters/properties.js")'></script>
+<script src='@routes.Assets.at("javascripts/ng-lodash.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("javascripts/ng-file-upload/ng-file-upload.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("javascripts/ng-file-upload/ng-file-upload-shim.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angular-ui-bootstrap/ui-bootstrap.min.js")'></script>
+<script src='@routes.Assets.at("lib/angular-ui-bootstrap/ui-bootstrap-tpls.min.js")'></script>
+<script src='@routes.Assets.at("lib/angular-http-auth/src/http-auth-interceptor.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("lib/angular-ui-select/dist/select.min.js")' type="text/javascript"></script>
+<script src='@routes.Assets.at("javascripts/moment.min.js")' type="text/javascript"></script>
+</body>
+</html>

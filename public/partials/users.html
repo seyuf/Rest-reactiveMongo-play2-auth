@@ -1,0 +1,35 @@
+
+<modal-create-cat></modal-create-cat>
+<modal-create-at></modal-create-at>
+<modal-create-slide></modal-create-slide>
+<modal-modif-cat></modal-modif-cat>
+<modal-modif-at></modal-modif-at>
+<modal-modif-slide></modal-modif-slide>
+<div class="col-lg-12">
+    <button class="btn btn-lg btn-success" ng-click="createOrModifyUser({})"
+            style="margin:10px 0px 10px 5px;">
+        <i class="fa fa-plus"></i> Create
+    </button>
+    <table ng-table="tableUsers" show-filter="true" style="background-color: white;"
+           class=" table table-responsive table-hover">
+        <tr ng-repeat="user in $data">
+            <td class="text-center" data-title="'Name'" filter="{ 'fullName': 'text' }"
+                sortable="'fullName'">
+                {{user.fullName}}
+            </td>
+            <td class="text-center" data-title="'Email'" sortable="'email'" filter="{ 'email': 'text' }">
+                {{user.email}}
+            </td>
+            <td class="text-center" data-title="'Role'" sortable="'role'">
+                {{user.role}}
+            </td>
+
+            <td class="text-center" data-title="'Actions'">
+                <span class="btn btn-primary" ng-click="createOrModifyUser(user)"><i class="fa fa-edit"></i> Modifier</span>
+                            <span class="btn btn-danger" ng-click="removeUser(user)"><i
+                                    class="fa fa-trash-o"></i></span>
+            </td>
+        </tr>
+    </table>
+
+</div>
