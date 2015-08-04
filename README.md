@@ -1,5 +1,5 @@
 # Rest-reactiveMongo-play2-auth
-Restful angularjs app to manage authentification and authorization of users through play framework (scala 2.11).
+Restful angularjs app to manage authentification and authorization of users through playframework (scala 2.11).
 
 Requirements 
 ------------------------------------------------------------
